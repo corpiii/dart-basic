@@ -1,3 +1,2 @@
-# dart-basic
-
-여기다가 다트 코드 작성 해 보자
+A sample command-line application with an entrypoint in `bin/`, library code
+in `lib/`, and example unit test in `test/`.
