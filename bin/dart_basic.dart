@@ -1,5 +1,5 @@
-import 'package:dart_basic/dart_basic.dart' as dart_basic;
+import 'challenge.dart';
 
-void main(List<String> arguments) {
-  print("Hello World");
+void main(List<String> args) {
+  challenge();
 }
