@@ -1,5 +1,6 @@
-import 'challenge.dart';
+import 'package:dart_basic/problem/problem1.dart';
 
 void main(List<String> args) {
-  challenge369();
+  problem1();
 }
+
