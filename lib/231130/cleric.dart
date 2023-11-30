@@ -8,4 +8,11 @@ class Cleric {
   Cleric()
     : hp = 50,
       mp = 10;
+
+  void selfAid() {
+    if (mp >= 5) {
+      mp -= 5;
+      hp = maxHP;
+    }
+  }
 }
