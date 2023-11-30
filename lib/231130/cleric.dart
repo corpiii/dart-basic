@@ -4,7 +4,6 @@ class Cleric {
   String name;
   int hp;
   final maxHP = 50;
-
   int mp;
   final maxMP = 10;
 
