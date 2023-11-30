@@ -1,3 +1,5 @@
+import 'dart:math';
+
 class Cleric {
   int hp;
   final maxHP = 50;
@@ -14,5 +16,14 @@ class Cleric {
       mp -= 5;
       hp = maxHP;
     }
+  }
+
+  int pray({required int seconds}) {
+    int preHealedMP = mp;
+    int healMP = seconds + Random().nextInt(3);
+
+    mp = min(mp + healMP, maxMP);
+
+    return mp - preHealedMP;
   }
 }
