@@ -8,9 +8,11 @@ class Cleric {
   int hp;
   int mp;
 
-  Cleric({required this.name})
-    : hp = 50,
-      mp = 10;
+  Cleric(
+    this.name, {
+    required this.hp,
+    required this.mp,
+  });
 
   void selfAid() {
     if (mp >= 5) {

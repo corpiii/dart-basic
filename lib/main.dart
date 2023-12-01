@@ -1,7 +1,5 @@
 import 'package:dart_basic/231130/cleric.dart';
-import 'package:dart_basic/231201/memory.dart';
 
 void main(List<String> args) {
-  var cleric = Cleric(name: "아서스");
-
+  var cleric = Cleric("아서스", hp: 40, mp: 5);
 }
