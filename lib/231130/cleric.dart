@@ -1,8 +1,8 @@
 import 'dart:math';
 
 class Cleric {
-  static final maxHP = 50;
-  static final maxMP = 10;
+  static const maxHP = 50;
+  static const maxMP = 10;
 
   String name;
   int hp;
@@ -10,8 +10,8 @@ class Cleric {
 
   Cleric(
     this.name, {
-      this.hp = 50,
-      this.mp = 10,
+      this.hp = maxHP,
+      this.mp = maxMP,
   });
 
   void selfAid() {
