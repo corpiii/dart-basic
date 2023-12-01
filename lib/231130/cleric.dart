@@ -10,8 +10,8 @@ class Cleric {
 
   Cleric(
     this.name, {
-    required this.hp,
-    required this.mp,
+      this.hp = 50,
+      this.mp = 10,
   });
 
   void selfAid() {
