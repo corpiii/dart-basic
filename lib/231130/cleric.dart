@@ -1,8 +1,8 @@
 import 'dart:math';
 
 class Cleric {
-  static const maxHP = 50;
-  static const maxMP = 10;
+  static const _maxHP = 50;
+  static const _maxMP = 10;
 
   String name;
   int hp;
@@ -10,14 +10,14 @@ class Cleric {
 
   Cleric(
     this.name, {
-      this.hp = maxHP,
-      this.mp = maxMP,
+      this.hp = _maxHP,
+      this.mp = _maxMP,
   });
 
   void selfAid() {
     if (mp >= 5) {
       mp -= 5;
-      hp = maxHP;
+      hp = _maxHP;
     }
   }
 
@@ -25,7 +25,7 @@ class Cleric {
     int preHealedMP = mp;
     int healMP = seconds + Random().nextInt(3);
 
-    mp = min(mp + healMP, maxMP);
+    mp = min(mp + healMP, _maxMP);
 
     return mp - preHealedMP;
   }
