@@ -6,7 +6,7 @@ class Wizard {
   String _name;
   int _hp;
   int _mp;
-  Wand? wand;
+  Wand? _wand;
 
   String get name => _name;
 
@@ -26,15 +26,22 @@ class Wizard {
     _mp = value;
   }
 
+  Wand? get wand => _wand;
+
+  set wand(Wand? wand) {
+    validateWandAndSet(wand);
+  }
+
   Wizard({
     required String name,
     required int hp,
     required int mp,
-    required this.wand,
+    required Wand? wand,
   })  : _name = name,
         _hp = hp,
         _mp = mp {
     validateNameAndSet(name);
+    validateWandAndSet(wand);
   }
 
   void validateNameAndSet(String name) {
@@ -42,6 +49,14 @@ class Wizard {
       _name = name;
     } else {
       throw Exception('Name must be at least 3 letters');
+    }
+  }
+
+  void validateWandAndSet(Wand? wand) {
+    if (wand == null) {
+      throw Exception('\'wand\' cannot be assigned null.');
+    } else {
+      _wand = wand;
     }
   }
 }
