@@ -23,7 +23,7 @@ class Wizard {
   int get mp => _mp;
 
   set mp(int value) {
-    _mp = value;
+    validateMPAndSet(value);
   }
 
   Wand? get wand => _wand;
@@ -42,6 +42,7 @@ class Wizard {
         _mp = mp {
     validateNameAndSet(name);
     validateWandAndSet(wand);
+    validateMPAndSet(mp);
   }
 
   void validateNameAndSet(String name) {
@@ -57,6 +58,14 @@ class Wizard {
       throw Exception('\'wand\' cannot be assigned null.');
     } else {
       _wand = wand;
+    }
+  }
+
+  void validateMPAndSet(int mp) {
+    if (mp < 0) {
+      throw Exception('\'mp\' must be greater than 0.');
+    } else {
+      _mp = mp;
     }
   }
 }
