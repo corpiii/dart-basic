@@ -5,24 +5,29 @@
 
 void personProblem() {
   List<Person> personList = [];
-
-  var hong = Person(name: '홍길동');
-  var han = Person(name: '한석봉');
+  var hong = Person(name: '홍길동', age: 20);
+  var han = Person(name: '한석봉', age: 25);
 
   personList.add(hong);
   personList.add(han);
 
-  var comment = "";
-  for (var person in personList) {
-    comment += '${person.name}\n';
+  Map<String, int> personAgeMap = {
+    for (var person in personList) person.name : person.age
+  };
+
+  var comment = '';
+  for (var person in personAgeMap.entries) {
+    comment += '${person.key}의 나이는 ${person.value}살\n';
   }
   print(comment);
 }
 
 class Person {
   String name;
+  int age;
 
   Person({
     required this.name,
+    required this.age,
   });
 }
