@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:dart_basic/231204/wand.dart';
+import 'package:dart_basic/231204/wizard_wand/wand.dart';
 
 class Wizard {
   String _name;
