@@ -17,7 +17,7 @@ class Wizard {
   int get hp => _hp;
 
   set hp(int hp) {
-    _hp = min(0, hp);
+    _hp = max(0, hp);
   }
 
   int get mp => _mp;
