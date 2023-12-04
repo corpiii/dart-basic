@@ -11,7 +11,7 @@ class Wizard {
   String get name => _name;
 
   set name(String value) {
-    validateName(value);
+    validateNameAndSet(value);
   }
 
   int get hp => _hp;
@@ -34,10 +34,10 @@ class Wizard {
   })  : _name = name,
         _hp = hp,
         _mp = mp {
-    validateName(name);
+    validateNameAndSet(name);
   }
 
-  void validateName(String name) {
+  void validateNameAndSet(String name) {
     if (name.length >= 3) {
       _name = name;
     } else {
