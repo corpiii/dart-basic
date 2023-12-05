@@ -1,7 +1,7 @@
-import 'package:dart_basic/231205/abstract_interface/thing.dart';
+import 'package:dart_basic/231205/abstract_interface/interface/thing.dart';
 
 import 'patent.dart';
-import 'tangible_asset.dart';
+import 'interface/tangible_asset.dart';
 
 class Book extends TangibleAsset implements Thing {
   int price;

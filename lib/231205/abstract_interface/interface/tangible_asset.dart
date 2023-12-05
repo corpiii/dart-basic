@@ -1,5 +1,5 @@
 import 'asset.dart';
-import 'patent.dart';
+import '../patent.dart';
 
 abstract class TangibleAsset extends Asset {
   Patent patent;
