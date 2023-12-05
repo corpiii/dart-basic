@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:dart_basic/231205/slime.dart';
+import 'package:dart_basic/231205/slimeProblem/slime.dart';
 import 'hero.dart';
 
 class PoisonSlime extends Slime {
