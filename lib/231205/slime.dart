@@ -1,3 +1,5 @@
+import 'hero.dart';
+
 class Slime {
   int _hp;
   final String _suffix;
