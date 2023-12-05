@@ -1,1 +1,5 @@
-abstract class Asset {}
+abstract class Asset {
+  String name;
+
+  Asset(this.name);
+}
