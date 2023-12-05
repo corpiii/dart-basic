@@ -7,6 +7,7 @@ void main(List<String> args) {
       patent: Patent(),
       name: 'computer',
       price: 123,
+      weight: 10,
       color: 'color',
       makerName: 'apple');
 
@@ -14,6 +15,10 @@ void main(List<String> args) {
       patent: Patent(),
       name: '책',
       price: 123,
+      weight: 10,
       color: 'color',
       isbn: 'isbn');
+
+  print(computer.weight);
+  computer.weight = 10;
 }
