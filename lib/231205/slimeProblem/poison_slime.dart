@@ -8,12 +8,6 @@ class PoisonSlime extends Slime {
 
   int _attackCount;
 
-  int get attackCount => _attackCount;
-
-  set attackCount(int value) {
-    _attackCount = max(_attackCount, value);
-  }
-
   PoisonSlime({
     required super.suffix,
   }) : _attackCount = _maxPoisonAttackCount;
@@ -22,12 +16,12 @@ class PoisonSlime extends Slime {
   void attack(Hero hero) {
     super.attack(hero);
 
-    if (attackCount != 0) {
+    if (_attackCount != 0) {
        var dividedByFive = hero.hp / 5;
        var roundedDamage = dividedByFive.round().toInt();
 
        hero.hp -= roundedDamage.toInt();
-       attackCount -= 1;
+       _attackCount = max(_attackCount - 1, 0);
 
        print('추가로, 독 포자를 살포했다!');
        print('$roundedDamage포인트의 데미지');
