@@ -24,7 +24,7 @@ class Book extends TangibleAsset implements Thing {
     required double weight,
     required this.color,
     required this.isbn,
-  }): _weight = weight,
-  super(patent, name);
+  })  : _weight = weight,
+        super(patent, name);
 }
 
