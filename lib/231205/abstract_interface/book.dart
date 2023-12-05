@@ -7,17 +7,24 @@ class Book extends TangibleAsset implements Thing {
   int price;
   String color;
   String isbn;
+  double _weight;
 
   @override
-  double weight;
+  double get weight => _weight;
+
+  @override
+  set weight(double weight) {
+    _weight = weight;
+  }
 
   Book({
     required Patent patent,
     required String name,
     required this.price,
-    required this.weight,
+    required double weight,
     required this.color,
     required this.isbn,
-  }): super(patent, name);
+  }): _weight = weight,
+  super(patent, name);
 }
 

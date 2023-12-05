@@ -1,5 +1,4 @@
 abstract interface class Thing {
-  double weight;
-
-  Thing(this.weight);
+  double get weight;
+  set weight(double weight);
 }
