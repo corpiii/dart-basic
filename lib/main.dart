@@ -1,9 +1,19 @@
-import 'package:dart_basic/231205/slimeProblem/hero.dart';
-import 'package:dart_basic/231205/slimeProblem/poison_slime.dart';
+import '231205/abstract_interface/book.dart';
+import '231205/abstract_interface/computer.dart';
+import '231205/abstract_interface/patent.dart';
 
 void main(List<String> args) {
-  var slime = PoisonSlime(suffix: 'A');
-  var hero = Hero(49);
+  var computer = Computer(
+      patent: Patent(),
+      name: 'computer',
+      price: 123,
+      color: 'color',
+      makerName: 'apple');
 
-  slime.attack(hero);
+  var book = Book(
+      patent: Patent(),
+      name: '책',
+      price: 123,
+      color: 'color',
+      isbn: 'isbn');
 }
