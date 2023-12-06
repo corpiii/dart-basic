@@ -1,6 +1,7 @@
-import 'package:dart_basic/231206/starcraft/interface/army_unionable.dart';
-import 'package:dart_basic/231206/starcraft/protoss/protoss_unit/dragun.dart';
-import 'package:dart_basic/231206/starcraft/protoss/protoss_unit/zealot.dart';
+import '231206/starcraft/interface/army_unionable.dart';
+
+import '231206/starcraft/protoss/protoss_unit/zealot.dart';
+import '231206/starcraft/protoss/protoss_unit/dragun.dart';
 
 import '231206/starcraft/terran/terran_unit/bionic/marine.dart';
 import '231206/starcraft/terran/terran_unit/bionic/medic.dart';
