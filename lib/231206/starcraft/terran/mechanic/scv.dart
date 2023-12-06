@@ -5,8 +5,9 @@ class SCV extends Mechanic {
     // todo
   }
 
-  void earn() {
+  double earn() {
     // todo
+    return 0;
   }
 
   @override

@@ -1,7 +1,7 @@
 abstract class Protoss {
   double shield;
 
-  void recoveryShield() {
+  void recoverShield() {
     // todo
   }
 
