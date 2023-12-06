@@ -1,3 +1,1 @@
-abstract interface class ArmyUnionable {
-  ArmyUnionable();
-}
+abstract interface class ArmyUnionable {}
