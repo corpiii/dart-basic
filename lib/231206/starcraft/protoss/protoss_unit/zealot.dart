@@ -1,8 +1,8 @@
 import 'package:dart_basic/231206/starcraft/interface/army_unionable.dart';
 import 'package:dart_basic/231206/starcraft/interface/medic_curable.dart';
-import 'package:dart_basic/231206/starcraft/protoss/interface/protoss.dart';
+import 'interface/protoss_unit.dart';
 
-class Zealot extends Protoss implements MedicCurable, ArmyUnionable {
+class Zealot extends ProtossUnit implements MedicCurable {
   @override
   double hp;
 
