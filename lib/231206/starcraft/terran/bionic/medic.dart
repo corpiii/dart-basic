@@ -1,17 +1,9 @@
-import '../../zerg/interface/zergbug/interface/zergbug.dart';
-import '../mechanic/scv.dart';
+import 'package:dart_basic/231206/starcraft/interface/medic_curable.dart';
+import 'package:dart_basic/231206/starcraft/protoss/protoss_unit/interface/protoss_unit.dart';
 import 'interface/bionic.dart';
 
 class Medic extends Bionic {
-  void heal(Bionic bionic) {
-    // todo
-  }
-
-  void healSCV(SCV scv) {
-    // todo
-  }
-
-  void healZergBug(ZergBug zergBug) {
-    // todo
+  void heal(MedicCurable unit) {
+    unit.hp += 10;
   }
 }

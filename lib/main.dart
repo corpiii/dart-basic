@@ -1,24 +1,18 @@
-import '231205/abstract_interface/book.dart';
-import '231205/abstract_interface/computer.dart';
-import '231205/abstract_interface/patent.dart';
+import 'package:dart_basic/231206/starcraft/protoss/protoss_unit/zealot.dart';
+import 'package:dart_basic/231206/starcraft/terran/bionic/marine.dart';
+import 'package:dart_basic/231206/starcraft/terran/bionic/medic.dart';
 
 void main(List<String> args) {
-  var computer = Computer(
-      patent: Patent(),
-      name: 'computer',
-      price: 123,
-      weight: 10,
-      color: 'color',
-      makerName: 'apple');
+  var medic = Medic();
+  var marine = Marine(hp: 10);
+  var zealot = Zealot(shield: 10, hp: 30);
 
-  var book = Book(
-      patent: Patent(),
-      name: '책',
-      price: 123,
-      weight: 10,
-      color: 'color',
-      isbn: 'isbn');
+  print(zealot.hp);
+  medic.heal(zealot);
+  print(zealot.hp);
 
-  print(computer.weight);
-  computer.weight = 10;
+  print(marine.hp);
+  medic.heal(marine);
+  print(marine.hp);
+
 }
