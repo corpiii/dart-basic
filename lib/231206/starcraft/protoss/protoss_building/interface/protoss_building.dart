@@ -1,6 +1,6 @@
 import '../../interface/protoss.dart';
 
-abstract class ProtossBuilding extends Protoss {
+abstract class ProtossBuilding implements Protoss {
   int hp;
   int shield;
 

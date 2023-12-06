@@ -1,5 +1,3 @@
-abstract class Zerg {
-  void autoHeal() {
-    // todo
-  }
+abstract interface class Zerg {
+  void autoHeal();
 }

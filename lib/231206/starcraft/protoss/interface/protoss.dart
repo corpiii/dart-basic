@@ -1,1 +1,1 @@
-abstract class Protoss {}
+abstract interface class Protoss {}
