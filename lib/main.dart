@@ -21,15 +21,15 @@ void main(List<String> args) {
 
   print('질럿 회복 전: ${zealot.hp}');
   medic.heal(zealot);
-  print('질럿 회복 후: ${zealot.hp}');
+  print('질럿 회복 후: ${zealot.hp}\n');
 
   print('마린 회복 전: ${marine.hp}');
   medic.heal(marine);
-  print('마린 회복 후: ${marine.hp}');
+  print('마린 회복 후: ${marine.hp}\n');
 
   print('드라군 회복 전: ${dragun.hp}');
   scv.repair(dragun);
-  print('드라군 회복 후: ${dragun.hp}');
+  print('드라군 회복 후: ${dragun.hp}\n');
 
   group.add(medic);
   group.add(marine);
