@@ -1,4 +1,4 @@
 abstract interface class SCVRepairable {
-  double get hp;
-  set hp(double value);
+  int get hp;
+  set hp(int value);
 }
