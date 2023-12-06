@@ -1,5 +1,5 @@
 import '../../interface/protoss.dart';
 
 abstract class ProtossUnit extends Protoss {
-  ProtossUnit();
+  ProtossUnit({required super.shield});
 }
