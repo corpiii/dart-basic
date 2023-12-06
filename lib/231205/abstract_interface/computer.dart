@@ -18,12 +18,11 @@ class Computer extends TangibleAsset implements Thing {
   }
 
   Computer({
-    required Patent patent,
-    required String name,
+    required super.patent,
+    required super.name,
     required this.price,
     required double weight,
     required this.color,
     required this.makerName,
-  })  : _weight = weight,
-        super(patent, name);
+  })  : _weight = weight;
 }

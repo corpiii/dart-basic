@@ -1,5 +1,5 @@
 abstract class Asset {
   String name;
 
-  Asset(this.name);
+  Asset({required this.name});
 }

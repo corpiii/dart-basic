@@ -6,8 +6,8 @@ import '../patent.dart';
 abstract class TangibleAsset extends Asset implements Thing {
   Patent patent;
 
-  TangibleAsset(
-    this.patent,
-    String name,
-  ) : super(name);
+  TangibleAsset({
+    required this.patent,
+    required super.name,
+  });
 }
