@@ -1,3 +1,3 @@
-import 'terran.dart';
+import '../../interface/terran.dart';
 
 abstract class Bionic extends Terran {}
