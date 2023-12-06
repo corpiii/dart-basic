@@ -1,1 +1,5 @@
-abstract class Zerg {}
+abstract class Zerg {
+  void autoHeal() {
+    // todo
+  }
+}
