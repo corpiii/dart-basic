@@ -8,4 +8,9 @@ class SCV extends Mechanic {
   void earn() {
     // todo
   }
+
+  @override
+  double hp;
+
+  SCV({required this.hp});
 }

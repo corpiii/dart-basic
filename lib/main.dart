@@ -6,12 +6,12 @@ import 'package:dart_basic/231206/starcraft/terran/mechanic/scv.dart';
 import 'package:dart_basic/231206/starcraft/terran/mechanic/tank.dart';
 
 void main(List<String> args) {
-  var medic = Medic();
+  var medic = Medic(hp: 50);
   var marine = Marine(hp: 10);
   var zealot = Zealot(shield: 10, hp: 30);
   List<ArmyUnionable> army = [];
-  var tank = Tank();
-  var scv = SCV();
+  var tank = Tank(hp: 150);
+  var scv = SCV(hp: 50);
 
   print(zealot.hp);
   medic.heal(zealot);
