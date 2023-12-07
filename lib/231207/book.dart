@@ -15,10 +15,11 @@ void controlInstance() {
 
   print(book == book1); // true
 
-  Set<Book> sett = {book, book1};
-  print(sett.length); // prints '1'
+  Set<Book> bookSet = {book, book1};
+  print(bookSet.length); // prints '1'
 
   var deepCopiedBook = book1.copyWith();
+  print(deepCopiedBook == book1); // true
   print(identical(book1, deepCopiedBook)); // false
 }
 
