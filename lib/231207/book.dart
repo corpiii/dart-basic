@@ -48,7 +48,7 @@ class Book implements Comparable<Book> {
 
   @override
   bool operator ==(Object other) =>
-      identical(this, other) || this.hashCode == other.hashCode;
+      identical(this, other) || hashCode == other.hashCode;
 
   @override
   int get hashCode =>
@@ -61,7 +61,7 @@ class Book implements Comparable<Book> {
 
   @override
   int compareTo(Book other) {
-    return this.publishDate.compareTo(other.publishDate);
+    return publishDate.compareTo(other.publishDate);
   }
 }
 
