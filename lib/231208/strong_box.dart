@@ -14,7 +14,7 @@ class StrongBox<Element> {
   Element? _element;
 
   void put(Element element, KeyType keyType) {
-    print('Initialize Box. KeyType is $keyType');
+    print('Initialize Box. KeyType is ${keyType.name}');
     _element = element;
     _keyType = keyType;
 
