@@ -30,7 +30,7 @@ class StrongBox<Element> {
 
     _useKeyCount[_keyType] = _useKeyCount[_keyType]! + 1;
 
-    if (_useKeyCount[_keyType] == KeyType.limitCountBy(_keyType)) {
+    if (_useKeyCount[_keyType] == _keyType.limitCount) {
       print('Open the Box by $KeyType. Inner value is $_element');
 
       _useKeyCount[_keyType] = _initKeyCount;
@@ -39,7 +39,7 @@ class StrongBox<Element> {
       return _element;
     }
 
-    final remainCount = KeyType.limitCountBy(_keyType) - _useKeyCount[_keyType]!;
+    final remainCount = _keyType.limitCount - _useKeyCount[_keyType]!;
     print('Not yet. More try open $remainCount');
 
     return null;

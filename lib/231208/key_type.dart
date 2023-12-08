@@ -7,6 +7,4 @@ enum KeyType {
   final int limitCount;
 
   const KeyType({required this.limitCount});
-
-  static int limitCountBy(KeyType keyType) => keyType.limitCount;
 }
