@@ -59,7 +59,7 @@ void dateFormat() {
 
   // file save json
   File companyString = File('lib/231209/company.txt');
-  companyString.writeAsStringSync(decodedObject.toString());
+  companyString.writeAsStringSync(encodedObject);
 
   // check object inner property
   print(regenerateDepartment.leader.name); // 홍길동
