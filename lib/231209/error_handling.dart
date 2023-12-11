@@ -34,9 +34,9 @@ void parseError() {
   try {
     num = parseStringToInt(numString);
   } on SomeError catch(e) {
-    print(e.message);
+    print(e.message); // int 타입으로 변경할 수 없습니다.
     num = 0;
   }
 
-  print(num);
+  print(num); // 0
 }

@@ -50,12 +50,17 @@ void dateFormat() {
       )
   );
 
+  // object -> json
   String encodedObject = jsonEncode(department);
+
+  // json -> object
   Map<String, dynamic> decodedObject = jsonDecode(encodedObject);
   Department regenerateDepartment = Department.fromJson(decodedObject);
-  File companyString = File('lib/231209/company.txt');
 
+  // file save json
+  File companyString = File('lib/231209/company.txt');
   companyString.writeAsStringSync(decodedObject.toString());
 
+  // check object inner property
   print(regenerateDepartment.leader.name); // 홍길동
 }

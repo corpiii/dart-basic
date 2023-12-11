@@ -17,4 +17,3 @@ void copy(String source, String target) {
 
   inputFile.copySync(target);
 }
-
