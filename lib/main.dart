@@ -1,5 +1,5 @@
-import 'package:dart_basic/231208/key_type.dart';
-import 'package:dart_basic/231208/strong_box.dart';
+import 'package:dart_basic/231208/strong_box/key_type.dart';
+import 'package:dart_basic/231208/strong_box/strong_box.dart';
 
 void main(List<String> args) {
   var strongBox = StrongBox(element: '1', keyType: KeyType.finger);

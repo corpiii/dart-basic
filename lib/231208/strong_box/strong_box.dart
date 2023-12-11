@@ -1,4 +1,4 @@
-import 'package:dart_basic/231208/key_type.dart';
+import 'package:dart_basic/231208/strong_box/key_type.dart';
 
 class StrongBox<Element> {
   static const _initKeyCount = 0;
@@ -56,3 +56,16 @@ class StrongBox<Element> {
 
 
 
+// Generic을 num, String, List<T> 3개를 지원하는 것은 불가능.
+// List인 것을 검사해서 as List로 바꿀 경우, List<dynamic>이 됨.
+// 이 다이나믹을 Element로 변경해주면 되는데
+
+/// 이게 불가능해서 안됨.
+/// List<dynamic> list3 = [1,2,3];
+/// final list4 = list3 as List<int>; // error
+/// print(list4);
+
+// num, String의 경우 는 지원 가능.
+// constant 한 애들만 지원 가능.
+// constant 한 것을 어떻게 체크할 수 있을까?
+// 불가능.
