@@ -4,7 +4,7 @@ class Word {
   Word({required String word}) : _word = word;
 
   bool isVowel(int i) {
-    final subString = _word.substring(i, i + 1);
+    final subString = _word.substring(i, i + 1).toLowerCase();
 
     switch (subString) {
       case 'a':
@@ -19,7 +19,7 @@ class Word {
   }
 
   bool isConsonant(int i) {
-    final subString = _word.substring(i, i + 1);
+    final subString = _word.substring(i, i + 1).toLowerCase();
 
     switch (subString) {
       case 'a':
