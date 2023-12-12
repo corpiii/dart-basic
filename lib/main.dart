@@ -1,5 +1,7 @@
-import 'package:dart_basic/231209/data_format.dart';
+import 'package:dart_basic/231212/dart_debug_sample.dart';
 
 void main(List<String> args) {
-  dateFormat();
+  YukymController controller = YukymController();
+  print(controller.getTyA());
+  print(controller.getTyB());
 }
