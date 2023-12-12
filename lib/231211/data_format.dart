@@ -63,4 +63,6 @@ void dateFormat() {
 
   // check object inner property
   print(regenerateDepartment.leader.name); // 홍길동
+
+  JsonDecoder();
 }
