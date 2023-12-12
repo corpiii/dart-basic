@@ -58,7 +58,7 @@ void dateFormat() {
   Department regenerateDepartment = Department.fromJson(decodedObject);
 
   // file save json
-  File companyString = File('lib/231209/company.txt');
+  File companyString = File('lib/231211/company.txt');
   companyString.writeAsStringSync(encodedObject);
 
   // check object inner property
