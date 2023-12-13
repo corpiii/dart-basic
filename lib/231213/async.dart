@@ -5,10 +5,8 @@ import 'dart:io';
 void processFile() async {
   // 1
   File csvFile = File('lib/231213/sample.csv');
-  String allString = csvFile.readAsStringSync();
-
-  allString = allString.replaceAll('한석봉', '김석봉');
-  csvFile.writeAsStringSync(allString);
+  String allString = await csvFile.readAsString();
+  changeWord(csvFile, allString);
 
   // 2
   getMovieInfo()
@@ -24,6 +22,12 @@ void processFile() async {
   } on TimeoutException {
     print('timeout');
   }
+}
+
+void changeWord(File csvFile, String str) async {
+  var newString = str.replaceAll('한석봉', '김석봉');
+  print(newString);
+  await csvFile.writeAsString(newString);
 }
 
 Future<String> getMovieInfo() async {
