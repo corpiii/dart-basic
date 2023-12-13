@@ -7,15 +7,15 @@ class DataList {
     required this.collectionChartDataList,
   });
 
-  Map<String, dynamic> toMap() {
+  Map<String, dynamic> toJson() {
     return {
-      'collectionChartData': collectionChartDataList,
+      'collectionChartData': collectionChartDataList.map((e) => e.toJson()).toList(),
     };
   }
 
-  factory DataList.fromMap(Map<String, dynamic> map) {
+  factory DataList.fromJson(Map<String, dynamic> map) {
     List list = map['collectionChartDataList'];
-    List<CollectionChartData> collectionChartList = list.map((e) => CollectionChartData.fromMap(e)).toList();
+    List<CollectionChartData> collectionChartList = list.map((e) => CollectionChartData.fromJson(e)).toList();
 
     return DataList(
       collectionChartDataList: collectionChartList,
@@ -37,16 +37,16 @@ class CollectionChartData {
     required this.collectionSalePrice,
   });
 
-  Map<String, dynamic> toMap() {
+  Map<String, dynamic> toJson() {
     return {
       'collectionName': collectionName,
-      'collectionSalePrice': collectionSalePrice,
+      'collectionSalePrice': collectionSalePrice.map((e) => e.toJson()).toList(),
     };
   }
 
-  factory CollectionChartData.fromMap(Map<String, dynamic> map) {
+  factory CollectionChartData.fromJson(Map<String, dynamic> map) {
     List list = map['collectionSalePrice'] ?? [];
-    List<CollectionSalePrice> collectionSalePrice = list.map((e) => CollectionSalePrice.fromMap(e)).toList();
+    List<CollectionSalePrice> collectionSalePrice = list.map((e) => CollectionSalePrice.fromJson(e)).toList();
 
     return CollectionChartData(
       collectionName: map['collectionName'] as String,
@@ -69,14 +69,14 @@ class CollectionSalePrice {
     required this.cvtDateTime,
   });
 
-  Map<String, dynamic> toMap() {
+  Map<String, dynamic> toJson() {
     return {
       'price': price,
       'cvtDateTime': cvtDateTime,
     };
   }
 
-  factory CollectionSalePrice.fromMap(Map<String, dynamic> map) {
+  factory CollectionSalePrice.fromJson(Map<String, dynamic> map) {
     return CollectionSalePrice(
       price: map['price'] as double,
       cvtDateTime: map['cvtDateTime'] as DateTime?,
@@ -113,7 +113,9 @@ void debugSolution1() {
 }''';
 
   Map<String, dynamic> map = jsonDecode(json);
-  DataList dataList = DataList.fromMap(map);
+  DataList dataList = DataList.fromJson(map);
+
+  print(jsonEncode(dataList)); // good!
 
   print(dataList.collectionChartDataList[1].collectionSalePrice[0].price); // 59.75
 }
