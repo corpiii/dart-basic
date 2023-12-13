@@ -4,16 +4,21 @@ import 'dart:io';
 
 void processFile() async {
   // 1
-  File csvFile = File('lib/231213/sample.csv');
-  String allString = await csvFile.readAsString();
-  changeWord(csvFile, allString);
+  try {
+    File csvFile = File('lib/231213/sample.csv');
+    String allString = await csvFile.readAsString();
+    changeWord(csvFile, allString);
+  } on PathNotFoundException {
+    print('파일이 없습니다');
+  }
+
 
   // 2
   getMovieInfo()
-  .then((value) {
-    Map<String, dynamic> map = jsonDecode(value);
-    print(map['director']);
-  });
+    .then((value) {
+      Map<String, dynamic> map = jsonDecode(value);
+      print(map['director']);
+    });
 
   // 3
   try {
