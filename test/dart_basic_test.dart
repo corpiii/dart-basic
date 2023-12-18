@@ -5,61 +5,73 @@ import 'package:dart_basic/231218/top_level.dart';
 import 'package:test/test.dart';
 
 void main() {
-  test('when_number_is_given_then_judge_even_or_odd', () {
-    expect(isEven(0), true);
-    expect(isEven(3), false);
-    expect(isEven(4), true);
+  var a = 1;
+
+  group('top_level_test', () {
+    test('when_number_is_given_then_judge_even_or_odd', () {
+      print(a);
+      expect(isEven(0), true);
+      expect(isEven(3), false);
+      expect(isEven(4), true);
+    });
+
+    test('when_List<int>_given_then_return_max_value_in_list', () {
+      expect(findMax([1, 2, 3, 4]), 4);
+      expect(findMax([-100, -10, 0, 100]), 100);
+      expect(findMax([-100, -300, -200, -500]), -100);
+    });
+
+    test('when_String_is_given_then_return_reserved_String', () {
+      expect(reverseString('Hello'), 'olleH');
+      expect(reverseString('hah aha'), 'aha hah');
+    });
   });
 
-  test('when_List<int>_given_then_return_max_value_in_list', () {
-    expect(findMax([1, 2, 3, 4]), 4);
-    expect(findMax([-100, -10, 0, 100]), 100);
-    expect(findMax([-100, -300, -200, -500]), -100);
-  });
+  group('post_manager_test', () {
+    var mockRepository;
 
-  test('when_String_is_given_then_return_reserved_String', () {
-    expect(reverseString('Hello'), 'olleH');
-    expect(reverseString('hah aha'), 'aha hah');
-  });
+    setUp(() {
+      a = 10;
+      mockRepository = MockPostMemoryRepositoryImple();
+    });
 
-  test('postManager_addPost_test', () async {
-    // given
-    var mockRepository = MockPostMemoryRepositoryImple();
-    var postManager = PostManager(repository: mockRepository);
+    test('postManager_addPost_test', () async {
+      // given
+      var postManager = PostManager(repository: mockRepository);
 
-    var post = Post(
-        userId: 1,
-        id: 1,
-        title: 'testTitle',
-        body: 'testBody');
+      var post = Post(
+          userId: 1,
+          id: 1,
+          title: 'testTitle',
+          body: 'testBody');
 
-    // when
-    postManager.addPost(post);
+      // when
+      postManager.addPost(post);
 
-    // then
-    var result = await postManager.getPosts();
+      // then
+      var result = await postManager.getPosts();
 
-    expect(result[0], post);
-  });
-  
-  test('postManager_deletePost_test', () async {
-    // given
-    var mockRepository = MockPostMemoryRepositoryImple();
-    var postManager = PostManager(repository: mockRepository);
+      expect(result[0], post);
+    });
 
-    var post = Post(
-        userId: 2,
-        id: 2,
-        title: 'testTitle',
-        body: 'testBody');
+    test('postManager_deletePost_test', () async {
+      // given
+      var postManager = PostManager(repository: mockRepository);
 
-    // when
-    postManager.addPost(post);
-    postManager.deletePost(post);
+      var post = Post(
+          userId: 2,
+          id: 2,
+          title: 'testTitle',
+          body: 'testBody');
 
-    // then
-    var result = await postManager.getPosts();
+      // when
+      postManager.addPost(post);
+      postManager.deletePost(post);
 
-    expect(result.isEmpty, true);
+      // then
+      var result = await postManager.getPosts();
+      print(result.length);
+      expect(result.isEmpty, true);
+    });
   });
 }
