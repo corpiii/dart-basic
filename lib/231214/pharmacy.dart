@@ -1,3 +1,20 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'pharmacy.g.dart';
+
+@JsonSerializable(explicitToJson: true)
+class Pharmacy1 {
+
+
+  Pharmacy1();
+
+  factory Pharmacy1.fromJson(Map<String, dynamic> json) => _$Pharmacy1FromJson(json);
+
+  Map<String, dynamic> toJson() => _$Pharmacy1ToJson(this);
+}
+
+
+
 class Pharmacy {
   int count;
   List<Store> stores;
