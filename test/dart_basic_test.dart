@@ -66,7 +66,7 @@ void main() {
 
       // then
       var result = await postManager.getPosts();
-      print(result.length);
+      
       expect(result.isEmpty, true);
     });
   });
