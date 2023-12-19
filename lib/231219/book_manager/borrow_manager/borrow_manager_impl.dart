@@ -22,5 +22,10 @@ class BorrowManagerImpl implements BorrowManager {
   void renewBook(User user, Book book) {
     // TODO: implement renewBook
   }
+
+  @override
+  void start() {
+    // TODO: implement start
+  }
   
 }

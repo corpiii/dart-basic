@@ -7,4 +7,6 @@ abstract interface class BorrowManager {
 
   void printAllBorrowedBook();
   void printHistory(User user);
+
+  void start();
 }

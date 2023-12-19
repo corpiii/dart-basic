@@ -27,4 +27,9 @@ class UserManagerImpl implements UserManager {
     // TODO: implement updateUser
   }
 
+  @override
+  void start() {
+    // TODO: implement start
+  }
+
 }

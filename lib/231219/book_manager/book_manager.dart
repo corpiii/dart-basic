@@ -23,7 +23,23 @@ class BookManager {
         var input = stdin.readLineSync();
         userInput = int.parse(input ?? "");
       } catch(e) {
-        print('잘못된 입력입니다.');
+        print('숫자를 입력해주세요.');
+        continue;
+      }
+
+      switch (userInput) {
+        case 1:
+          userManager.start();
+          break;
+        case 2:
+          borrowManager.start();
+          break;
+        case 3:
+          print('종료합니다.');
+          break;
+        default:
+          print('잘못된 입력입니다.');
+          break;
       }
     }
   }
