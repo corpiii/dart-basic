@@ -54,7 +54,6 @@ class BookManager {
 }
 
 extension UserManagament on BookManager {
-
   void _startUserManagerScene() {
     int userInput = BookManager._initUserInput;
 
@@ -90,6 +89,7 @@ extension UserManagament on BookManager {
             continue;
           }
 
+          print('$willUpdatedUser 회원을 수정합니다.');
           User updatedUser = updateUser(willUpdatedUser);
           _userManager.updateUser(updatedUser);
           break;
