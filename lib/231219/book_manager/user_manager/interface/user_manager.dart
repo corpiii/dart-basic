@@ -5,6 +5,7 @@ abstract interface class UserManager {
   void updateUser(User user);
   void deleteUser(int id);
   void rollbackLastDeletedUser();
+  User findUserById(int id);
 
   void printAllUser();
 }

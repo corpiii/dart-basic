@@ -80,9 +80,11 @@ extension UserManagament on BookManager {
           _userManager.addUser(user);
           break;
         case 3:
-          User user = generateUser();
-          _userManager.updateUser(user);
+          int id = getUserId();
+          User willUpdatedUser = _userManager.findUserById(id);
           break;
+        case 4:
+
         default:
           print('잘못된 입력입니다.');
           break;

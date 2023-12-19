@@ -145,4 +145,28 @@ class UserInputProcessor {
 
     return birthDay;
   }
+
+  int inputUserId() {
+    bool isInvalid = true;
+    int id = -1;
+
+    while (isInvalid) {
+      print('id를 입력해주세요.');
+
+      var userInput = stdin.readLineSync();
+      if (userInput != null && userInput.isNotEmpty) {
+        try {
+          id = int.parse(userInput);
+          isInvalid = false;
+        } catch(e) {
+          print('숫자를 입력해주세요');
+        }
+      } else {
+        print('다시 입력해주세요');
+        continue;
+      }
+    }
+
+    return id;
+  }
 }

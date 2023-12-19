@@ -33,4 +33,11 @@ class UserManagerImpl implements UserManager {
   void updateUser(User user) {
     // TODO: implement updateUser
   }
+
+  @override
+  User findUserById(int id) {
+    User user = _userList.where((element) => element.id == id).first;
+
+    return user.copyWith();
+  }
 }
