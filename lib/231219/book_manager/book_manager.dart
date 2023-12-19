@@ -90,6 +90,10 @@ extension UserManagament on BookManager {
     print('이름을 입력해주세요.');
     var name = inputUserName();
 
+    print('성별을 입력해주세요.');
+    // var gender = stdin.readLineSync();
+    var gender = 0;
+
     print('주소를 입력해주세요.');
     var address = stdin.readLineSync();
 
@@ -99,7 +103,7 @@ extension UserManagament on BookManager {
     print('년,월,일 순서로 \'/\'를 구분자로 생년월일을 입력해주세요 예 ) 2023/12/19');
     var birthDay = stdin.readLineSync();
 
-    return User(name: '', address: '', phoneNumber: '01055555555', birthDay: DateTime.now());
+    return User(name: '', address: '', gender: 0, phoneNumber: '01055555555', birthDay: DateTime.now());
     // return User(name: name, address: address, phoneNumber: phoneNumber, birthDay: birthDay)
   }
 
