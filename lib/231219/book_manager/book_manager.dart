@@ -73,7 +73,8 @@ extension UserManagament on BookManager {
           userManager.printAllUser();
           break;
         case 2:
-          // userManager.addUser(user);
+          User user = generateUser();
+          userManager.addUser(user);
           break;
         case 3:
           print('종료합니다.');
@@ -86,12 +87,37 @@ extension UserManagament on BookManager {
   }
 
   User generateUser() {
-    print('이름을 입력해주세요');
-    var name = stdin.readLineSync();
+    print('이름을 입력해주세요.');
+    var name = inputUserName();
+
+    print('주소를 입력해주세요.');
     var address = stdin.readLineSync();
-    var phoneNumber = stdin.readLineSync();
+
+    print('\'-\'을 포함한 휴대폰번호를 입력해주세요. 예) 010-1234-5678');
     var phoneNumber = stdin.readLineSync();
 
-    return User(name: name, address: address, phoneNumber: phoneNumber, birthDay: birthDay)
+    print('년,월,일 순서로 \'/\'를 구분자로 생년월일을 입력해주세요 예 ) 2023/12/19');
+    var birthDay = stdin.readLineSync();
+
+    return User(name: '', address: '', phoneNumber: '01055555555', birthDay: DateTime.now());
+    // return User(name: name, address: address, phoneNumber: phoneNumber, birthDay: birthDay)
+  }
+
+  String inputUserName() {
+    bool isInvalid = true;
+    String name = "";
+
+    while (isInvalid) {
+      var userInput = stdin.readLineSync();
+      if (userInput != null && userInput.isNotEmpty) {
+        name = userInput;
+        isInvalid = false;
+      } else {
+        print('다시 입력해주세요');
+        continue;
+      }
+    }
+
+    return name;
   }
 }
