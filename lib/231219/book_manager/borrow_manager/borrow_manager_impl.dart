@@ -1,9 +1,13 @@
 import 'package:dart_basic/231219/book_manager/borrow_manager/interface/book_borrow_manager.dart';
 import 'package:dart_basic/231219/book_manager/model/book.dart';
+import 'package:dart_basic/231219/book_manager/model/borrow_info.dart';
 import 'package:dart_basic/231219/book_manager/model/user.dart';
 
 class BorrowManagerImpl implements BorrowManager {
   List<Book> _bookList = [];
+  List<BorrowInfo> _borrowHistory = [];
+
+  static const _limitBorrowDays = 14;
 
   BorrowManagerImpl({
     required List<Book> bookList,
@@ -11,7 +15,18 @@ class BorrowManagerImpl implements BorrowManager {
 
   @override
   void borrowBook(User user, Book book) {
-    // TODO: implement borrowBook
+    DateTime now = DateTime.now();
+    DateTime borrowDate = DateTime(now.year, now.month, now.day);
+    DateTime returnDate = borrowDate.add(Duration(days: _limitBorrowDays));
+
+    BorrowInfo info = BorrowInfo(
+        borrowDate: borrowDate,
+        returnDate: returnDate,
+        isRetrun: false,
+        borrowedBook: book,
+        borrower: user);
+
+    _borrowHistory.add(info);
   }
 
   @override
