@@ -81,13 +81,31 @@ extension UserManagament on BookManager {
           break;
         case 3:
           int id = getUserId();
-          User willUpdatedUser = _userManager.findUserById(id);
-          print('회원을 수정합니다: $willUpdatedUser');
+
+          print('id: $id의 회원을 검색합니다.');
+          User? willUpdatedUser = _userManager.findUserById(id);
+
+          if (willUpdatedUser == null) {
+            print('회원을 찾을 수 없습니다.');
+            continue;
+          }
+
           User updatedUser = updateUser(willUpdatedUser);
           _userManager.updateUser(updatedUser);
           break;
         case 4:
+          int id = getUserId();
 
+          print('id: $id의 회원을 검색합니다.');
+          User? willDeletedUser = _userManager.findUserById(id);
+
+          if (willDeletedUser == null) {
+            print('회원을 찾을 수 없습니다.');
+            continue;
+          }
+
+          print('$willDeletedUser 회원을 삭제합니다.');
+          _userManager.deleteUser(id);
         default:
           print('잘못된 입력입니다.');
           break;

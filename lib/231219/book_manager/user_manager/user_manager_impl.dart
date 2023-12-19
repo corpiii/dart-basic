@@ -15,7 +15,7 @@ class UserManagerImpl implements UserManager {
 
   @override
   void deleteUser(int id) {
-    // TODO: implement deleteUser
+    _userList = _userList.where((element) => element.id != id).toList();
   }
 
   @override
@@ -45,8 +45,12 @@ class UserManagerImpl implements UserManager {
   }
 
   @override
-  User findUserById(int id) {
-    User user = _userList.where((element) => element.id == id).first;
+  User? findUserById(int id) {
+    User? user = _userList.where((element) => element.id == id).first;
+
+    if (user == null) {
+      return null;
+    }
 
     return user.copyWith();
   }
