@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dart_basic/231219/book_manager/borrow_manager/extension/date_format+.dart';
 
 import 'borrow_manager/interface/book_borrow_manager.dart';
+import 'model/book.dart';
 import 'model/user.dart';
 import 'model/user_input_processor.dart';
 import 'user_manager/interface/user_manager.dart';
@@ -90,18 +91,7 @@ extension UserManagament on BookManager {
           _userManager.updateUser(updatedUser);
           break;
         case 4:
-          int id = UserInputProcessor.shared.inputId();
 
-          print('id: $id의 회원을 검색합니다.');
-          User? willDeletedUser = _userManager.findUserById(id);
-
-          if (willDeletedUser == null) {
-            print('회원을 찾을 수 없습니다.');
-            continue;
-          }
-
-          print('$willDeletedUser 회원을 삭제합니다.');
-          _userManager.deleteUser(id);
         default:
           print('잘못된 입력입니다.');
           break;
@@ -173,42 +163,48 @@ extension BorrowManagement on BookManager {
           _borrowManager.printBorrowHistory();
           break;
         case 2:
-          print('대출하시는 분의 id를 입력해주세요');
-          int userId = UserInputProcessor.shared.inputId();
-          User? findedUser = _userManager.findUserById(userId);
-
-          if (findedUser == null) {
-            print('회원을 찾을 수 없습니다.');
-            continue;
-          }
-
-          print('안녕하세요 ${findedUser.name}님.');
-          var canBorrowBooks = _borrowManager.getAllCanBorrowBooks();
-
-          for (var (index, book) in canBorrowBooks.indexed) {
-            print('${index + 1}. ${book.title}');
-          }
-
-          var selectedBookNumber = UserInputProcessor.shared.inputBookNumber();
-
-          if (selectedBookNumber < 0 ||
-              selectedBookNumber >= canBorrowBooks.length) {
-            print('잘못된 입력입니다.');
-            continue;
-          }
-
-          var returnDate = _borrowManager.borrowBook(
-              findedUser, canBorrowBooks[selectedBookNumber - 1]);
-
-          print('대출기한은 ${returnDate.yyyyMMdd} 입니다.');
+          _borrowBookWorkflow();
           break;
         case 3:
+          _returnBookWorkflow();
         case 4:
-
         default:
           print('잘못된 입력입니다.');
           break;
       }
     }
+  }
+
+  void printCanBorrowBooks(List<Book> books) {
+    for (var (index, book) in books.indexed) {
+      print('${index + 1}. ${book.title}');
+    }
+  }
+
+  void _borrowBookWorkflow() {
+    var canBorrowBooks = _borrowManager.getAllCanBorrowBooks();
+
+    print('대출하시는 분의 id를 입력해주세요');
+    int userId = UserInputProcessor.shared.inputId();
+    User? borrower = _userManager.findUserById(userId);
+
+    if (borrower == null) {
+      print('회원을 찾을 수 없습니다.');
+      return;
+    }
+
+    print('안녕하세요 ${borrower.name}님.');
+    printCanBorrowBooks(canBorrowBooks);
+
+    var selectedBookNumber =
+    UserInputProcessor.shared.inputBookNumber(canBorrowBooks.length);
+    var borrowedBook = canBorrowBooks[selectedBookNumber - 1];
+    var returnDate = _borrowManager.borrowBook(borrower, borrowedBook);
+
+    print('대출기한은 ${returnDate.yyyyMMdd} 입니다.');
+  }
+
+  void _returnBookWorkflow() {
+
   }
 }

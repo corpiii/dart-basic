@@ -174,7 +174,7 @@ class UserInputProcessor {
     return id;
   }
 
-  int inputBookNumber() {
+  int inputBookNumber(int maxValue) {
     bool isInvalid = true;
     int number = -1;
 
@@ -184,7 +184,13 @@ class UserInputProcessor {
       var userInput = stdin.readLineSync();
       if (userInput != null && userInput.isNotEmpty) {
         try {
-          number = int.parse(userInput);
+          var tempNumber = int.parse(userInput);
+
+          if (tempNumber < 0 || tempNumber >= maxValue) {
+            print('잘못된 입력입니다.');
+            continue;
+          }
+
           isInvalid = false;
         } catch(e) {
           print('숫자를 입력해주세요');

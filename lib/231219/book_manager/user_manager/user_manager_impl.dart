@@ -46,7 +46,7 @@ class UserManagerImpl implements UserManager {
 
   @override
   User? findUserById(int id) {
-    User? user = _userList.where((element) => element.id == id).first;
+    User? user = _userList.where((element) => element.id == id).singleOrNull;
 
     if (user == null) {
       return null;
