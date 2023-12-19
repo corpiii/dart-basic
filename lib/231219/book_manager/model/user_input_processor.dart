@@ -186,11 +186,12 @@ class UserInputProcessor {
         try {
           var tempNumber = int.parse(userInput);
 
-          if (tempNumber < 0 || tempNumber >= maxValue) {
+          if (tempNumber <= 0 || tempNumber > maxValue) {
             print('잘못된 입력입니다.');
             continue;
           }
 
+          number = tempNumber;
           isInvalid = false;
         } catch(e) {
           print('숫자를 입력해주세요');

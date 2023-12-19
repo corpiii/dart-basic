@@ -6,15 +6,12 @@ import 'user.dart';
 class BorrowInfo {
   DateTime borrowDate;
   DateTime returnDate;
-  bool isReturn;
-
   Book borrowedBook;
   User borrower;
 
   BorrowInfo({
     required this.borrowDate,
     required this.returnDate,
-    required this.isReturn,
     required this.borrowedBook,
     required this.borrower,
   });
@@ -22,6 +19,6 @@ class BorrowInfo {
   @override
   String toString() {
     return '제목: ${borrowedBook.title}, 빌린날짜: ${borrowDate.yyyyMMdd}, '
-        '반납기한: ${returnDate.yyyyMMdd}, 반납여부: ${isReturn}, 빌린사람: ${borrower.name}';
+        '반납기한: ${returnDate.yyyyMMdd}, 빌린사람: ${borrower.name}';
   }
 }
