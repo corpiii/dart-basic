@@ -4,14 +4,16 @@ import 'package:dart_basic/231219/book_manager/model/borrow_info.dart';
 import 'package:dart_basic/231219/book_manager/model/user.dart';
 
 class BorrowManagerImpl implements BorrowManager {
+  static const _limitBorrowDays = 14;
+
   List<Book> _bookList = [];
   List<BorrowInfo> _borrowHistory = [];
 
-  static const _limitBorrowDays = 14;
-
   BorrowManagerImpl({
     required List<Book> bookList,
-  }) : _bookList = bookList;
+    required List<BorrowInfo> borrowHistory,
+  })  : _bookList = bookList,
+        _borrowHistory = borrowHistory;
 
   @override
   void borrowBook(User user, Book book) {
@@ -26,12 +28,15 @@ class BorrowManagerImpl implements BorrowManager {
         borrowedBook: book,
         borrower: user);
 
+    book.isBorrowed = true;
     _borrowHistory.add(info);
   }
 
   @override
   void printAllCanBorrowBooks() {
-    for(var book in _bookList) {
+    var bookList = _bookList.where((element) => element.isBorrowed = false);
+
+    for (var book in bookList) {
       print(book);
     }
   }
