@@ -102,7 +102,7 @@ class UserInputProcessor {
       var userInput = stdin.readLineSync();
 
       if (userInput != null && userInput.isNotEmpty) {
-        RegExp regex = RegExp(r'^\d{4}/(0?[1-9]|1[0-2])/0?[1-9]|[12][0-9]|3[01])$');
+        RegExp regex = RegExp(r'^\d{4}/(0?[1-9]|1[0-2])/(0?[1-9]|[12][0-9]|3[01])$');
 
         if (regex.hasMatch(userInput) == false) {
           print('형태가 올바르지 않습니다.');

@@ -2,7 +2,9 @@ import 'package:dart_basic/231219/book_manager/model/user.dart';
 import 'package:dart_basic/231219/book_manager/user_manager/interface/user_manager.dart';
 
 class UserManagerImpl implements UserManager {
-  List<User> _userList = [];
+  List<User> _userList = [
+    User(id: 1, name: '1', address: '1', phoneNumber: 'phoneNumber', birthDay: DateTime.now(), gender: 1),
+  ];
 
   @override
   void addUser(User user) {
@@ -31,7 +33,15 @@ class UserManagerImpl implements UserManager {
 
   @override
   void updateUser(User user) {
-    // TODO: implement updateUser
+    _userList = _userList.map((e) {
+      if (e.id == user.id) {
+        print('from : $e');
+        print('to : $user');
+        return user;
+      } else {
+        return e;
+      }
+    }).toList();
   }
 
   @override

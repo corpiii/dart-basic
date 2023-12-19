@@ -1,30 +1,23 @@
 class User {
-  int _id;
-  String _name;
-  String _address;
-  String _phoneNumber;
-  DateTime _birthDay;
-  int _gender;
-
-  int get id => _id;
+  int id;
+  String name;
+  String address;
+  String phoneNumber;
+  DateTime birthDay;
+  int gender;
 
   User({
-    required int id,
-    required String name,
-    required int gender,
-    required String address,
-    required String phoneNumber,
-    required DateTime birthDay,
-  })  : _id = id,
-        _name = name,
-        _gender = gender,
-        _address = address,
-        _phoneNumber = phoneNumber,
-        _birthDay = birthDay;
+    required this.id,
+    required this.name,
+    required this.address,
+    required this.phoneNumber,
+    required this.birthDay,
+    required this.gender,
+  });
 
   @override
   String toString() {
-    return 'User(name=$_name, id=$_id, gender=$_gender)';
+    return 'User(name=$name, id=$id, gender=$gender)';
   }
 
   User copyWith({
@@ -36,12 +29,12 @@ class User {
     int? gender,
   }) {
     return User(
-      id: id ?? this._id,
-      name: name ?? this._name,
-      address: address ?? this._address,
-      phoneNumber: phoneNumber ?? this._phoneNumber,
-      birthDay: birthDay ?? this._birthDay,
-      gender: gender ?? this._gender,
+      id: id ?? this.id,
+      name: name ?? this.name,
+      address: address ?? this.address,
+      phoneNumber: phoneNumber ?? this.phoneNumber,
+      birthDay: birthDay ?? this.birthDay,
+      gender: gender ?? this.gender,
     );
   }
 }

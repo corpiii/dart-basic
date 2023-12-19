@@ -82,6 +82,9 @@ extension UserManagament on BookManager {
         case 3:
           int id = getUserId();
           User willUpdatedUser = _userManager.findUserById(id);
+          print('회원을 수정합니다: $willUpdatedUser');
+          User updatedUser = updateUser(willUpdatedUser);
+          _userManager.updateUser(updatedUser);
           break;
         case 4:
 
@@ -95,6 +98,7 @@ extension UserManagament on BookManager {
   User generateUser() {
     UserInputProcessor processor = UserInputProcessor();
 
+    var id = processor.inputUserId();
     var name = processor.inputUserName();
     var gender = processor.inputUserGender();
     var address = processor.inputUserAddress();
@@ -102,11 +106,40 @@ extension UserManagament on BookManager {
     var birthDay = processor.inputUserBirthDay();
 
     return User(
+        id: id,
         name: name,
         gender: gender,
         address: address,
         phoneNumber: phoneNumber,
-        birthDay: birthDay
+        birthDay: birthDay,
+    );
+  }
+
+  int getUserId() {
+    UserInputProcessor processor = UserInputProcessor();
+
+    var id = processor.inputUserId();
+
+    return id;
+  }
+
+  User updateUser(User user) {
+    UserInputProcessor processor = UserInputProcessor();
+
+    var id = user.id;
+    var name = processor.inputUserName();
+    var gender = processor.inputUserGender();
+    var address = processor.inputUserAddress();
+    var phoneNumber = processor.inputUserPhoneNumber();
+    var birthDay = processor.inputUserBirthDay();
+
+    return User(
+      id: id,
+      name: name,
+      gender: gender,
+      address: address,
+      phoneNumber: phoneNumber,
+      birthDay: birthDay,
     );
   }
 }
