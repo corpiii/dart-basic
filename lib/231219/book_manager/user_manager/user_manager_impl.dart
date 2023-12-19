@@ -26,10 +26,4 @@ class UserManagerImpl implements UserManager {
   void updateUser(User user) {
     // TODO: implement updateUser
   }
-
-  @override
-  void start() {
-    // TODO: implement start
-  }
-
 }

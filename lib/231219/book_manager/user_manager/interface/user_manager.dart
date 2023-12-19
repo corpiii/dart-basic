@@ -7,6 +7,4 @@ abstract interface class UserManager {
   void rollbackLastDeletedUser();
 
   void printAllUser();
-
-  void start();
 }

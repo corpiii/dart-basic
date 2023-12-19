@@ -29,10 +29,10 @@ class BookManager {
 
       switch (userInput) {
         case 1:
-          userManager.start();
+          _startUserManagerScene();
           break;
         case 2:
-          borrowManager.start();
+          _startBorrowManagerScene();
           break;
         case 3:
           print('종료합니다.');
@@ -42,5 +42,13 @@ class BookManager {
           break;
       }
     }
+  }
+
+  void _startUserManagerScene() {
+    
+  }
+
+  void _startBorrowManagerScene() {
+
   }
 }
