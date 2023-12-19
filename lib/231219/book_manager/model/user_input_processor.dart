@@ -173,4 +173,28 @@ class UserInputProcessor {
 
     return id;
   }
+
+  int inputBookNumber() {
+    bool isInvalid = true;
+    int number = -1;
+
+    while (isInvalid) {
+      print('책 번호를 입력해주세요.');
+
+      var userInput = stdin.readLineSync();
+      if (userInput != null && userInput.isNotEmpty) {
+        try {
+          number = int.parse(userInput);
+          isInvalid = false;
+        } catch(e) {
+          print('숫자를 입력해주세요');
+        }
+      } else {
+        print('다시 입력해주세요');
+        continue;
+      }
+    }
+
+    return number;
+  }
 }

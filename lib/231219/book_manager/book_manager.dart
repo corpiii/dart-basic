@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:dart_basic/231219/book_manager/borrow_manager/extension/date_format+.dart';
+
 import 'borrow_manager/interface/book_borrow_manager.dart';
 import 'model/user.dart';
 import 'model/user_input_processor.dart';
@@ -25,7 +27,7 @@ class BookManager {
       try {
         var input = stdin.readLineSync();
         userInput = int.parse(input ?? "");
-      } catch(e) {
+      } catch (e) {
         print('숫자를 입력해주세요.');
         continue;
       }
@@ -73,7 +75,7 @@ extension UserManagament on BookManager {
           _userManager.addUser(user);
           break;
         case 3:
-          int id = _getUserId();
+          int id = UserInputProcessor.shared.inputId();
 
           print('id: $id의 회원을 검색합니다.');
           User? willUpdatedUser = _userManager.findUserById(id);
@@ -88,7 +90,7 @@ extension UserManagament on BookManager {
           _userManager.updateUser(updatedUser);
           break;
         case 4:
-          int id = _getUserId();
+          int id = UserInputProcessor.shared.inputId();
 
           print('id: $id의 회원을 검색합니다.');
           User? willDeletedUser = _userManager.findUserById(id);
@@ -110,7 +112,7 @@ extension UserManagament on BookManager {
   User _generateUser() {
     UserInputProcessor processor = UserInputProcessor.shared;
 
-    var id = processor.inputUserId();
+    var id = processor.inputId();
     var name = processor.inputUserName();
     var gender = processor.inputUserGender();
     var address = processor.inputUserAddress();
@@ -118,21 +120,13 @@ extension UserManagament on BookManager {
     var birthDay = processor.inputUserBirthDay();
 
     return User(
-        id: id,
-        name: name,
-        gender: gender,
-        address: address,
-        phoneNumber: phoneNumber,
-        birthDay: birthDay,
+      id: id,
+      name: name,
+      gender: gender,
+      address: address,
+      phoneNumber: phoneNumber,
+      birthDay: birthDay,
     );
-  }
-
-  int _getUserId() {
-    UserInputProcessor processor = UserInputProcessor.shared;
-
-    var id = processor.inputUserId();
-
-    return id;
   }
 
   User _updateUser(User user) {
@@ -153,5 +147,67 @@ extension UserManagament on BookManager {
       phoneNumber: phoneNumber,
       birthDay: birthDay,
     );
+  }
+}
+
+extension BorrowManagement on BookManager {
+  void _startBorrowManagerScene() {
+    int userInput = BookManager._initUserInput;
+
+    while (userInput != 0) {
+      print('0.뒤로   1.대출목록   2.도서대출   3.도서반납   4.도서연장');
+      try {
+        var input = stdin.readLineSync();
+        userInput = int.parse(input ?? "");
+      } catch (e) {
+        print('숫자를 입력해주세요.');
+        continue;
+      }
+
+      switch (userInput) {
+        case 0:
+          print('이전화면으로 이동합니다.');
+          break;
+        case 1:
+          print('대출목록 입니다.');
+          break;
+        case 2:
+          print('대출하시는 분의 id를 입력해주세요');
+          int userId = UserInputProcessor.shared.inputId();
+          User? findedUser = _userManager.findUserById(userId);
+
+          if (findedUser == null) {
+            print('회원을 찾을 수 없습니다.');
+            continue;
+          }
+
+          print('안녕하세요 ${findedUser.name}님.');
+          var canBorrowBooks = _borrowManager.getAllCanBorrowBooks();
+
+          for (var (index, book) in canBorrowBooks.indexed) {
+            print('${index + 1}. ${book.title}');
+          }
+
+          var selectedBookNumber = UserInputProcessor.shared.inputBookNumber();
+
+          if (selectedBookNumber < 0 ||
+              selectedBookNumber >= canBorrowBooks.length) {
+            print('잘못된 입력입니다.');
+            continue;
+          }
+
+          var returnDate = _borrowManager.borrowBook(
+              findedUser, canBorrowBooks[selectedBookNumber - 1]);
+
+          print('대출기한은 ${returnDate.yyyyMMdd} 입니다.');
+
+          break;
+        case 3:
+        case 4:
+        default:
+          print('잘못된 입력입니다.');
+          break;
+      }
+    }
   }
 }

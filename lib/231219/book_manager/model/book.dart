@@ -4,6 +4,8 @@ class Book {
   DateTime _publishDate;
   bool isBorrowed;
 
+  String get title => _title;
+
   Book({
     this.isBorrowed = false,
     required int id,
