@@ -1,5 +1,5 @@
 enum BorrowState {
-  returned, borrowed;
+  returned, borrowed, renewed;
 
   String get description {
     switch (this) {
@@ -7,6 +7,8 @@ enum BorrowState {
         return '반납';
       case BorrowState.borrowed:
         return '대출';
+      case BorrowState.renewed:
+        return '연장';
     }
   }
 }

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dart_basic/231219/book_manager/borrow_manager/extension/date_format+.dart';
+import 'package:dart_basic/231219/book_manager/model/borrow_info.dart';
 
 import 'borrow_manager/interface/book_borrow_manager.dart';
 import 'model/book.dart';
@@ -165,6 +166,7 @@ extension BorrowManagement on BookManager {
           _returnBookWorkflow();
           break;
         case 3:
+          _renewBorrowBookWorkflow();
           break;
         case 4:
           _borrowManager.printBorrowArchive();
@@ -190,7 +192,7 @@ extension BorrowManagement on BookManager {
     }
 
     print('안녕하세요 ${borrower.name}님.');
-    _printCanBorrowBooks(canBorrowBooks);
+    _printBooks(canBorrowBooks);
 
     var selectedBookNumber =
     UserInputProcessor.shared.inputBookNumber(canBorrowBooks.length);
@@ -198,12 +200,6 @@ extension BorrowManagement on BookManager {
     var returnDate = _borrowManager.borrowBook(borrower, borrowedBook);
 
     print('대출되었습니다. 반납일은 ${returnDate.yyyyMMdd} 까지 입니다.');
-  }
-
-  void _printCanBorrowBooks(List<Book> books) {
-    for (var (index, book) in books.indexed) {
-      print('${index + 1}. ${book.title}');
-    }
   }
 
   void _returnBookWorkflow() {
@@ -220,8 +216,9 @@ extension BorrowManagement on BookManager {
 
     print('안녕하세요 ${borrower.name}님.');
 
-    var borrowedBooks = _borrowManager.getBorrowedBookBy(borrower.id);
-    printBorrowedBooks(borrowedBooks);
+    var borrowedInfo = _borrowManager.getBorrowedBookBy(borrower.id);
+    var borrowedBooks = borrowedInfo.map((e) => e.borrowedBook).toList();
+    _printShouldReturnedBooks(borrowedInfo);
 
     var selectedBookNumber = processor.inputBookNumber(borrowedBooks.length);
     var borrowedBook = borrowedBooks[selectedBookNumber - 1];
@@ -230,9 +227,51 @@ extension BorrowManagement on BookManager {
     print('정상적으로 반납되었습니다. 감사합니다.');
   }
 
-  void printBorrowedBooks(List<Book> books) {
+  void _renewBorrowBookWorkflow() {
+    var processor = UserInputProcessor.shared;
+
+    print('연장하시는 분의 id를 입력해주세요');
+    int userId = processor.inputId();
+    User? borrower = _userManager.findUserById(userId);
+
+    if (borrower == null) {
+      print('회원을 찾을 수 없습니다.');
+      return;
+    }
+
+    print('안녕하세요 ${borrower.name}님.');
+
+    var borrowedInfo = _borrowManager.getBorrowedBookBy(borrower.id);
+    var borrowedBooks = borrowedInfo.map((e) => e.borrowedBook).toList();
+
+    if (borrowedBooks.isEmpty) {
+      print('대출 중인 책이 없습니다.');
+      return;
+    }
+
+    _printBooks(borrowedBooks);
+
+    var selectedBookNumber = processor.inputBookNumber(borrowedBooks.length);
+    var borrowedBook = borrowedBooks[selectedBookNumber - 1];
+
+    var result = _borrowManager.renewBook(borrower, borrowedBook);
+    if (result) {
+      print('정상적으로 연장되었습니다. 감사합니다.');
+    } else {
+      print('연장에 실패했습니다. 연장은 한번만 가능합니다.');
+    }
+  }
+
+  void _printBooks(List<Book> books) {
     for (var (index, book) in books.indexed) {
       print('${index + 1}. ${book.title}');
+    }
+  }
+
+  void _printShouldReturnedBooks(List<BorrowInfo> bookInfos) {
+    for (var (index, info) in bookInfos.indexed) {
+      print('${index + 1}. ${info.borrowedBook.title}, '
+          '반납일 : ${info.returnDate.yyyyMMdd}');
     }
   }
 }

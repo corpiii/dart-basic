@@ -10,6 +10,7 @@ typedef UserId = int;
 
 class BorrowManagerImpl implements BorrowManager {
   static const _limitBorrowDays = 14;
+  static const _limitRenewDays = 7;
 
   List<Book> _totalBookList = [];
   List<BorrowInfo> _borrowedBooks = [];
@@ -27,8 +28,8 @@ class BorrowManagerImpl implements BorrowManager {
     DateTime borrowDate = DateTime(now.year, now.month, now.day);
     DateTime returnDate = borrowDate.add(Duration(days: _limitBorrowDays));
 
-    addBorrowInfo(borrowDate, returnDate, book, user);
-    addBorrowHistory(borrowDate, BorrowState.borrowed, book, user);
+    _addBorrowInfo(borrowDate, returnDate, book, user);
+    _addBorrowHistory(borrowDate, BorrowState.borrowed, book, user);
 
     return returnDate;
   }
@@ -46,16 +47,30 @@ class BorrowManagerImpl implements BorrowManager {
   }
 
   @override
-  List<Book> getBorrowedBookBy(int userId) {
+  List<BorrowInfo> getBorrowedBookBy(int userId) {
     return _borrowedBooks
         .where((element) => element.borrower.id == userId)
-        .map((e) => e.borrowedBook)
         .toList();
   }
 
   @override
-  void renewBook(User user, Book book) {
-    // TODO: implement renewBook
+  bool renewBook(User user, Book book) {
+    var borrowedBook = _borrowedBooks
+        .where((element) => element.borrowedBook == book)
+        .singleOrNull;
+
+    if (borrowedBook == null || borrowedBook.isRenew == true) {
+      return false;
+    }
+
+    borrowedBook.isRenew = true;
+    borrowedBook.returnDate = borrowedBook.returnDate.add(Duration(days: _limitRenewDays));
+
+    DateTime now = DateTime.now();
+    DateTime currentDate = DateTime(now.year, now.month, now.day);
+    _addBorrowHistory(currentDate, BorrowState.renewed, book, user);
+
+    return true;
   }
 
   @override
@@ -68,10 +83,11 @@ class BorrowManagerImpl implements BorrowManager {
     DateTime now = DateTime.now();
     DateTime currentDate = DateTime(now.year, now.month, now.day);
 
-    addBorrowHistory(currentDate, BorrowState.returned, book, user);
+    _addBorrowHistory(currentDate, BorrowState.returned, book, user);
   }
 
-  void addBorrowInfo(DateTime borrowDate, DateTime returnDate, Book book, User user) {
+  void _addBorrowInfo(
+      DateTime borrowDate, DateTime returnDate, Book book, User user) {
     BorrowInfo info = BorrowInfo(
         borrowDate: borrowDate,
         returnDate: returnDate,
@@ -82,7 +98,7 @@ class BorrowManagerImpl implements BorrowManager {
     _borrowedBooks.add(info);
   }
 
-  void addBorrowHistory(
+  void _addBorrowHistory(
       DateTime currentDate, BorrowState state, Book book, User user) {
     BorrowHistory history = BorrowHistory(
         currentDate: currentDate, state: state, book: book, user: user);
