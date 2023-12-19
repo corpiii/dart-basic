@@ -9,4 +9,9 @@ class Book {
     required DateTime publishDate,
   })  : _title = title,
         _publishDate = publishDate;
+
+  @override
+  String toString() {
+    return 'Book{_title: $_title, _publishDate: $_publishDate}';
+  }
 }
