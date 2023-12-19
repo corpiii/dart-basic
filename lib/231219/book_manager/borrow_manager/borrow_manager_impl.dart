@@ -16,7 +16,7 @@ class BorrowManagerImpl implements BorrowManager {
         _borrowHistory = borrowHistory;
 
   @override
-  void borrowBook(User user, Book book) {
+  DateTime borrowBook(User user, Book book) {
     DateTime now = DateTime.now();
     DateTime borrowDate = DateTime(now.year, now.month, now.day);
     DateTime returnDate = borrowDate.add(Duration(days: _limitBorrowDays));
@@ -30,15 +30,13 @@ class BorrowManagerImpl implements BorrowManager {
 
     book.isBorrowed = true;
     _borrowHistory.add(info);
+
+    return returnDate;
   }
 
   @override
-  void printAllCanBorrowBooks() {
-    var bookList = _bookList.where((element) => element.isBorrowed = false);
-
-    for (var book in bookList) {
-      print(book);
-    }
+  List<Book> getAllCanBorrowBooks() {
+    return _bookList.where((element) => element.isBorrowed == false).toList();
   }
 
   @override
@@ -49,5 +47,10 @@ class BorrowManagerImpl implements BorrowManager {
   @override
   void renewBook(User user, Book book) {
     // TODO: implement renewBook
+  }
+
+  @override
+  void returnBook(Book book) {
+    // TODO: implement returnBook
   }
 }
