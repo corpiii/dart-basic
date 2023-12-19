@@ -1,6 +1,10 @@
 import 'dart:io';
 
 class UserInputProcessor {
+  UserInputProcessor._internal();
+
+  static final shared = UserInputProcessor._internal();
+
   String inputUserName() {
     bool isInvalid = true;
     String name = "";
