@@ -24,7 +24,7 @@ class BorrowManagerImpl implements BorrowManager {
     BorrowInfo info = BorrowInfo(
         borrowDate: borrowDate,
         returnDate: returnDate,
-        isRetrun: false,
+        isReturn: false,
         borrowedBook: book,
         borrower: user);
 
@@ -40,8 +40,10 @@ class BorrowManagerImpl implements BorrowManager {
   }
 
   @override
-  void printHistory(User user) {
-    // TODO: implement printHistory
+  void printBorrowHistory() {
+    for (var (index, info) in _borrowHistory.indexed) {
+      print(info);
+    }
   }
 
   @override

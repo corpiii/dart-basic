@@ -170,6 +170,7 @@ extension BorrowManagement on BookManager {
           break;
         case 1:
           print('대출목록 입니다.');
+          _borrowManager.printBorrowHistory();
           break;
         case 2:
           print('대출하시는 분의 id를 입력해주세요');
@@ -200,10 +201,10 @@ extension BorrowManagement on BookManager {
               findedUser, canBorrowBooks[selectedBookNumber - 1]);
 
           print('대출기한은 ${returnDate.yyyyMMdd} 입니다.');
-
           break;
         case 3:
         case 4:
+
         default:
           print('잘못된 입력입니다.');
           break;

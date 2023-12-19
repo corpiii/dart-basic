@@ -7,5 +7,5 @@ abstract interface class BorrowManager {
   void returnBook(Book book);
 
   List<Book> getAllCanBorrowBooks();
-  void printHistory(User user);
+  void printBorrowHistory();
 }
