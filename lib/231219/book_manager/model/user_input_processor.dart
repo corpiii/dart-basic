@@ -150,7 +150,7 @@ class UserInputProcessor {
     return birthDay;
   }
 
-  int inputUserId() {
+  int inputId() {
     bool isInvalid = true;
     int id = -1;
 
