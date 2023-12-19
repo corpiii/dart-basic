@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dart_basic/231219/book_manager/borrow_manager/interface/book_borrow_manager.dart';
+import 'package:dart_basic/231219/book_manager/model/user_input_processor.dart';
 import 'package:dart_basic/231219/book_manager/user_manager/interface/user_manager.dart';
 
 import 'model/user.dart';
@@ -8,13 +9,14 @@ import 'model/user.dart';
 class BookManager {
   static const _initUserInput = -1;
 
-  BorrowManager borrowManager;
-  UserManager userManager;
+  BorrowManager _borrowManager;
+  UserManager _userManager;
 
   BookManager({
-    required this.borrowManager,
-    required this.userManager,
-  });
+    required BorrowManager borrowManager,
+    required UserManager userManager,
+  })  : _borrowManager = borrowManager,
+        _userManager = userManager;
 
   void start() {
     int userInput = _initUserInput;
@@ -52,6 +54,7 @@ class BookManager {
 }
 
 extension UserManagament on BookManager {
+
   void _startUserManagerScene() {
     int userInput = BookManager._initUserInput;
 
@@ -70,14 +73,15 @@ extension UserManagament on BookManager {
           print('이전화면으로 이동합니다.');
           break;
         case 1:
-          userManager.printAllUser();
+          _userManager.printAllUser();
           break;
         case 2:
           User user = generateUser();
-          userManager.addUser(user);
+          _userManager.addUser(user);
           break;
         case 3:
-          print('종료합니다.');
+          User user = generateUser();
+          _userManager.updateUser(user);
           break;
         default:
           print('잘못된 입력입니다.');
@@ -87,41 +91,20 @@ extension UserManagament on BookManager {
   }
 
   User generateUser() {
-    print('이름을 입력해주세요.');
-    var name = inputUserName();
+    UserInputProcessor processor = UserInputProcessor();
 
-    print('성별을 입력해주세요.');
-    // var gender = stdin.readLineSync();
-    var gender = 0;
+    var name = processor.inputUserName();
+    var gender = processor.inputUserGender();
+    var address = processor.inputUserAddress();
+    var phoneNumber = processor.inputUserPhoneNumber();
+    var birthDay = processor.inputUserBirthDay();
 
-    print('주소를 입력해주세요.');
-    var address = stdin.readLineSync();
-
-    print('\'-\'을 포함한 휴대폰번호를 입력해주세요. 예) 010-1234-5678');
-    var phoneNumber = stdin.readLineSync();
-
-    print('년,월,일 순서로 \'/\'를 구분자로 생년월일을 입력해주세요 예 ) 2023/12/19');
-    var birthDay = stdin.readLineSync();
-
-    return User(name: '', address: '', gender: 0, phoneNumber: '01055555555', birthDay: DateTime.now());
-    // return User(name: name, address: address, phoneNumber: phoneNumber, birthDay: birthDay)
-  }
-
-  String inputUserName() {
-    bool isInvalid = true;
-    String name = "";
-
-    while (isInvalid) {
-      var userInput = stdin.readLineSync();
-      if (userInput != null && userInput.isNotEmpty) {
-        name = userInput;
-        isInvalid = false;
-      } else {
-        print('다시 입력해주세요');
-        continue;
-      }
-    }
-
-    return name;
+    return User(
+        name: name,
+        gender: gender,
+        address: address,
+        phoneNumber: phoneNumber,
+        birthDay: birthDay
+    );
   }
 }
