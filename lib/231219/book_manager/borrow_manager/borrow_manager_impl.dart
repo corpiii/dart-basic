@@ -3,14 +3,22 @@ import 'package:dart_basic/231219/book_manager/model/book.dart';
 import 'package:dart_basic/231219/book_manager/model/user.dart';
 
 class BorrowManagerImpl implements BorrowManager {
+  List<Book> _bookList = [];
+
+  BorrowManagerImpl({
+    required List<Book> bookList,
+  }) : _bookList = bookList;
+
   @override
   void borrowBook(User user, Book book) {
     // TODO: implement borrowBook
   }
 
   @override
-  void printAllBorrowedBook() {
-    // TODO: implement printAllBorrowedBook
+  void printAllCanBorrowBooks() {
+    for(var book in _bookList) {
+      print(book);
+    }
   }
 
   @override

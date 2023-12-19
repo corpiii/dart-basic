@@ -1,10 +1,9 @@
 import 'dart:io';
 
-import 'package:dart_basic/231219/book_manager/borrow_manager/interface/book_borrow_manager.dart';
-import 'package:dart_basic/231219/book_manager/model/user_input_processor.dart';
-import 'package:dart_basic/231219/book_manager/user_manager/interface/user_manager.dart';
-
+import 'borrow_manager/interface/book_borrow_manager.dart';
 import 'model/user.dart';
+import 'model/user_input_processor.dart';
+import 'user_manager/interface/user_manager.dart';
 
 class BookManager {
   static const _initUserInput = -1;
@@ -30,7 +29,6 @@ class BookManager {
         print('숫자를 입력해주세요.');
         continue;
       }
-
       switch (userInput) {
         case 1:
           _startUserManagerScene();
@@ -46,10 +44,6 @@ class BookManager {
           break;
       }
     }
-  }
-
-  void _startBorrowManagerScene() {
-
   }
 }
 
@@ -75,11 +69,11 @@ extension UserManagament on BookManager {
           _userManager.printAllUser();
           break;
         case 2:
-          User user = generateUser();
+          User user = _generateUser();
           _userManager.addUser(user);
           break;
         case 3:
-          int id = getUserId();
+          int id = _getUserId();
 
           print('id: $id의 회원을 검색합니다.');
           User? willUpdatedUser = _userManager.findUserById(id);
@@ -90,11 +84,11 @@ extension UserManagament on BookManager {
           }
 
           print('$willUpdatedUser 회원을 수정합니다.');
-          User updatedUser = updateUser(willUpdatedUser);
+          User updatedUser = _updateUser(willUpdatedUser);
           _userManager.updateUser(updatedUser);
           break;
         case 4:
-          int id = getUserId();
+          int id = _getUserId();
 
           print('id: $id의 회원을 검색합니다.');
           User? willDeletedUser = _userManager.findUserById(id);
@@ -113,8 +107,8 @@ extension UserManagament on BookManager {
     }
   }
 
-  User generateUser() {
-    UserInputProcessor processor = UserInputProcessor();
+  User _generateUser() {
+    UserInputProcessor processor = UserInputProcessor.shared;
 
     var id = processor.inputUserId();
     var name = processor.inputUserName();
@@ -133,16 +127,16 @@ extension UserManagament on BookManager {
     );
   }
 
-  int getUserId() {
-    UserInputProcessor processor = UserInputProcessor();
+  int _getUserId() {
+    UserInputProcessor processor = UserInputProcessor.shared;
 
     var id = processor.inputUserId();
 
     return id;
   }
 
-  User updateUser(User user) {
-    UserInputProcessor processor = UserInputProcessor();
+  User _updateUser(User user) {
+    UserInputProcessor processor = UserInputProcessor.shared;
 
     var id = user.id;
     var name = processor.inputUserName();

@@ -5,6 +5,6 @@ abstract interface class BorrowManager {
   void borrowBook(User user, Book book);
   void renewBook(User user, Book book);
 
-  void printAllBorrowedBook();
+  void printAllCanBorrowBooks();
   void printHistory(User user);
 }
